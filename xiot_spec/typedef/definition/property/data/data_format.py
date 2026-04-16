@@ -99,7 +99,7 @@ class DataFormat(Enum):
         }
         return mapping.get(self, "unknown")
 
-    def get_java_class(self) -> Type[DataValue[Any]]:
+    def get_python_class(self) -> Type[DataValue[Any]]:
         """获取对应的 DataValue 子类"""
         cls = self.get_class()
         if cls is None:

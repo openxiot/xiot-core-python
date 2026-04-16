@@ -100,7 +100,7 @@ class Urn:
                         return
         except Exception as e:
             if exception:
-                raise ValueError(f"parse urn failed: {e}") from e
+                raise ValueError(f"parse urn({string}) failed: {e}") from e
             self.valid = False
 
     def _init(self, magic: str, ns: str, type_str: str, name: str, value_str: str) -> bool:

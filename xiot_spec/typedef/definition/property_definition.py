@@ -108,7 +108,7 @@ class PropertyDefinition(Generic[T]):
             print("property value validate failed, value is null")
             return False
 
-        expected_cls = self._format.get_java_class()
+        expected_cls = self._format.get_python_class()
         if not isinstance(value, expected_cls):
             print(f"property value validate failed, expect format: {expected_cls.__name__} "
                   f"but value.format: {value.__class__.__name__}")

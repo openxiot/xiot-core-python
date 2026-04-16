@@ -1,707 +1,710 @@
 {
-  "success": true,
-  "data": {
-    "description": {
-      "en-US": "air conditioner template",
-      "zh-CN": "空调模板（定时器版本二）"
+  "description": {
+    "en-US": "air conditioner template",
+    "zh-CN": "空调模板（定时器版本二）"
+  },
+  "services": [
+    {
+      "iid": 1,
+      "description": {
+        "en-US": "Device Information",
+        "zh-CN": "设备信息"
+      },
+      "type": "urn:jd-spec:service:device-information:00000001:jd:t2:1",
+      "properties": [
+        {
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 1,
+          "format": "string",
+          "description": {
+            "en-US": "Firmware Revision",
+            "zh-CN": "固件版本"
+          },
+          "type": "urn:jd-spec:property:firmware-revision:00000006:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 2,
+          "format": "string",
+          "description": {
+            "en-US": "Hardware Revision",
+            "zh-CN": "硬件版本"
+          },
+          "type": "urn:jd-spec:property:hardware-revision:00000fa2:jd:t2:1"
+        },
+        {
+          "access": [
+            "read"
+          ],
+          "iid": 3,
+          "format": "string",
+          "description": {
+            "en-US": "Serial Number",
+            "zh-CN": "序列号"
+          },
+          "type": "urn:jd-spec:property:serial-number:00000005:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 4,
+          "format": "string",
+          "description": {
+            "en-US": "Manufacturer",
+            "zh-CN": "制造商"
+          },
+          "type": "urn:jd-spec:property:manufacturer:00000fa3:jd:t2:1"
+        }
+      ]
     },
-    "services": [
-      {
-        "iid": 1,
-        "description": {
-          "en-US": "Device Information",
-          "zh-CN": "设备信息"
-        },
-        "type": "urn:jd-spec:service:device-information:00000001:jd:t2:1",
-        "properties": [
-          {
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 1,
-            "format": "string",
-            "description": {
-              "en-US": "Firmware Revision",
-              "zh-CN": "固件版本"
-            },
-            "type": "urn:jd-spec:property:firmware-revision:00000006:jd:t2:1"
-          },
-          {
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 2,
-            "format": "string",
-            "description": {
-              "en-US": "Hardware Revision",
-              "zh-CN": "硬件版本"
-            },
-            "type": "urn:jd-spec:property:hardware-revision:00000fa2:jd:t2:1"
-          },
-          {
-            "access": [
-              "read"
-            ],
-            "iid": 3,
-            "format": "string",
-            "description": {
-              "en-US": "Serial Number",
-              "zh-CN": "序列号"
-            },
-            "type": "urn:jd-spec:property:serial-number:00000005:jd:t2:1"
-          },
-          {
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 4,
-            "format": "string",
-            "description": {
-              "en-US": "Manufacturer",
-              "zh-CN": "制造商"
-            },
-            "type": "urn:jd-spec:property:manufacturer:00000fa3:jd:t2:1"
-          }
-        ]
+    {
+      "iid": 2,
+      "description": {
+        "en-US": "Ethernet Connectivity",
+        "zh-CN": "以太网络连接"
       },
-      {
-        "iid": 2,
-        "description": {
-          "en-US": "Ethernet Connectivity",
-          "zh-CN": "以太网络连接"
+      "type": "urn:jd-spec:service:ethernet-connectivity:00000002:jd:t2:1",
+      "properties": [
+        {
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 1,
+          "format": "string",
+          "description": {
+            "en-US": "IPv4 Address",
+            "zh-TW": "",
+            "zh-CN": "IPv4地址"
+          },
+          "type": "urn:jd-spec:property:ip:00000086:jd:t2:1"
         },
-        "type": "urn:jd-spec:service:ethernet-connectivity:00000002:jd:t2:1",
-        "properties": [
-          {
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 1,
-            "format": "string",
-            "description": {
-              "en-US": "IPv4 Address",
-              "zh-TW": "",
-              "zh-CN": "IPv4地址"
-            },
-            "type": "urn:jd-spec:property:ip:00000086:jd:t2:1"
+        {
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 2,
+          "format": "string",
+          "description": {
+            "en-US": "IPv4 Subnet Mask",
+            "zh-CN": "IPv4子网掩码"
           },
-          {
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 2,
-            "format": "string",
-            "description": {
-              "en-US": "IPv4 Subnet Mask",
-              "zh-CN": "IPv4子网掩码"
-            },
-            "type": "urn:jd-spec:property:ipv4-subnet-mask:00001db4:jd:t2:1"
+          "type": "urn:jd-spec:property:ipv4-subnet-mask:00001db4:jd:t2:1"
+        },
+        {
+          "unit": "",
+          "access": [
+            "read"
+          ],
+          "iid": 3,
+          "format": "string",
+          "description": {
+            "en-US": "Mac Address",
+            "zh-TW": "",
+            "zh-CN": "Mac地址"
           },
-          {
-            "unit": "",
-            "access": [
-              "read"
-            ],
-            "iid": 3,
-            "format": "string",
-            "description": {
-              "en-US": "Mac Address",
-              "zh-TW": "",
-              "zh-CN": "Mac地址"
-            },
-            "type": "urn:jd-spec:property:mac-address:0000000e:jd:t2:1"
-          }
-        ]
+          "type": "urn:jd-spec:property:mac-address:0000000e:jd:t2:1"
+        }
+      ]
+    },
+    {
+      "iid": 3,
+      "description": {
+        "en-US": "Wi-Fi Connectivity",
+        "zh-CN": "无线网络连接"
       },
-      {
-        "iid": 3,
-        "description": {
-          "en-US": "Wi-Fi Connectivity",
-          "zh-CN": "无线网络连接"
+      "type": "urn:jd-spec:service:wifi-connectivity:00000002:jd:t2:1",
+      "properties": [
+        {
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 1,
+          "format": "string",
+          "description": {
+            "en-US": "IPv4 Address",
+            "zh-TW": "",
+            "zh-CN": "IPv4地址"
+          },
+          "type": "urn:jd-spec:property:ip:00000086:jd:t2:1"
         },
-        "type": "urn:jd-spec:service:wifi-connectivity:00000002:jd:t2:1",
-        "properties": [
-          {
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 1,
-            "format": "string",
-            "description": {
-              "en-US": "IPv4 Address",
-              "zh-TW": "",
-              "zh-CN": "IPv4地址"
-            },
-            "type": "urn:jd-spec:property:ip:00000086:jd:t2:1"
+        {
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 2,
+          "format": "string",
+          "description": {
+            "en-US": "IPv4 Subnet Mask",
+            "zh-CN": "IPv4子网掩码"
           },
-          {
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 2,
-            "format": "string",
-            "description": {
-              "en-US": "IPv4 Subnet Mask",
-              "zh-CN": "IPv4子网掩码"
-            },
-            "type": "urn:jd-spec:property:ipv4-subnet-mask:00001db4:jd:t2:1"
+          "type": "urn:jd-spec:property:ipv4-subnet-mask:00001db4:jd:t2:1"
+        },
+        {
+          "unit": "",
+          "access": [
+            "read"
+          ],
+          "iid": 3,
+          "format": "string",
+          "description": {
+            "en-US": "Mac Address",
+            "zh-TW": "",
+            "zh-CN": "Mac地址"
           },
-          {
-            "unit": "",
-            "access": [
-              "read"
-            ],
-            "iid": 3,
-            "format": "string",
-            "description": {
-              "en-US": "Mac Address",
-              "zh-TW": "",
-              "zh-CN": "Mac地址"
-            },
-            "type": "urn:jd-spec:property:mac-address:0000000e:jd:t2:1"
+          "type": "urn:jd-spec:property:mac-address:0000000e:jd:t2:1"
+        },
+        {
+          "unit": "",
+          "access": [
+            "read"
+          ],
+          "iid": 4,
+          "format": "int8",
+          "description": {
+            "en-US": "Received Signal Strength Indication",
+            "zh-CN": "信号强度"
           },
-          {
-            "unit": "",
-            "access": [
-              "read"
-            ],
-            "iid": 4,
-            "format": "int8",
-            "description": {
-              "en-US": "Received Signal Strength Indication",
-              "zh-CN": "信号强度"
-            },
-            "value-range": [
-              -128,
-              127,
-              1
-            ],
-            "type": "urn:jd-spec:property:rssi:000019c9:jd:t2:1"
-          }
-        ]
+          "value-range": [
+            -128,
+            127,
+            1
+          ],
+          "type": "urn:jd-spec:property:rssi:000019c9:jd:t2:1"
+        }
+      ]
+    },
+    {
+      "iid": 4,
+      "description": {
+        "en-US": "Upgrade Service",
+        "zh-CN": "升级服务"
       },
-      {
-        "iid": 4,
-        "description": {
-          "en-US": "Upgrade Service",
-          "zh-CN": "升级服务"
+      "type": "urn:jd-spec:service:upgrade:00000e75:jd:t2:1",
+      "actions": [
+        {
+          "iid": 1,
+          "in": [
+            {
+              "piid": 2,
+              "repeat": [
+                1,
+                1
+              ]
+            },
+            {
+              "piid": 3,
+              "repeat": [
+                1,
+                1
+              ]
+            },
+            {
+              "piid": 4,
+              "repeat": [
+                1,
+                1
+              ]
+            },
+            {
+              "piid": 6,
+              "repeat": [
+                1,
+                1
+              ]
+            },
+            {
+              "piid": 7,
+              "repeat": [
+                1,
+                1
+              ]
+            }
+          ],
+          "description": {
+            "en-US": "Upgrade",
+            "zh-CN": "升级"
+          },
+          "type": "urn:jd-spec:action:upgrade:00000d49:jd:t2:1"
+        }
+      ],
+      "properties": [
+        {
+          "unit": "",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 1,
+          "format": "uint8",
+          "description": {
+            "en-US": "progress",
+            "zh-CN": "进度"
+          },
+          "value-range": [
+            0,
+            100,
+            1
+          ],
+          "type": "urn:jd-spec:property:progress:00001c26:jd:t2:1"
         },
-        "type": "urn:jd-spec:service:upgrade:00000e75:jd:t2:1",
-        "actions": [
-          {
-            "iid": 1,
-            "in": [
-              {
-                "piid": 2,
-                "repeat": [
-                  1,
-                  1
-                ]
-              },
-              {
-                "piid": 3,
-                "repeat": [
-                  1,
-                  1
-                ]
-              },
-              {
-                "piid": 4,
-                "repeat": [
-                  1,
-                  1
-                ]
-              },
-              {
-                "piid": 6,
-                "repeat": [
-                  1,
-                  1
-                ]
-              },
-              {
-                "piid": 7,
-                "repeat": [
-                  1,
-                  1
-                ]
-              }
-            ],
-            "description": {
-              "en-US": "Upgrade",
-              "zh-CN": "升级"
-            },
-            "type": "urn:jd-spec:action:upgrade:00000d49:jd:t2:1"
-          }
-        ],
-        "properties": [
-          {
-            "unit": "",
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 1,
-            "format": "uint8",
-            "description": {
-              "en-US": "progress",
-              "zh-CN": "进度"
-            },
-            "value-range": [
-              0,
-              100,
-              1
-            ],
-            "type": "urn:jd-spec:property:progress:00001c26:jd:t2:1"
+        {
+          "access": [],
+          "iid": 2,
+          "format": "string",
+          "description": {
+            "en-US": "md5",
+            "zh-CN": "md5"
           },
-          {
-            "access": [],
-            "iid": 2,
-            "format": "string",
-            "description": {
-              "en-US": "md5",
-              "zh-CN": "md5"
-            },
-            "type": "urn:jd-spec:property:md5:00001c22:jd:t2:1"
+          "type": "urn:jd-spec:property:md5:00001c22:jd:t2:1"
+        },
+        {
+          "access": [],
+          "iid": 3,
+          "format": "string",
+          "description": {
+            "en-US": "Firmware Revision",
+            "zh-CN": "固件版本"
           },
-          {
-            "access": [],
-            "iid": 3,
-            "format": "string",
-            "description": {
-              "en-US": "Firmware Revision",
-              "zh-CN": "固件版本"
-            },
-            "type": "urn:jd-spec:property:firmware-revision:00000006:jd:t2:1"
+          "type": "urn:jd-spec:property:firmware-revision:00000006:jd:t2:1"
+        },
+        {
+          "access": [],
+          "iid": 4,
+          "format": "string",
+          "description": {
+            "en-US": "Firmware URL",
+            "zh-CN": "固件地址"
           },
-          {
-            "access": [],
-            "iid": 4,
-            "format": "string",
-            "description": {
-              "en-US": "Firmware URL",
-              "zh-CN": "固件地址"
-            },
-            "type": "urn:jd-spec:property:firmware-url:00001c24:jd:t2:1"
+          "type": "urn:jd-spec:property:firmware-url:00001c24:jd:t2:1"
+        },
+        {
+          "access": [],
+          "iid": 5,
+          "format": "uint8",
+          "description": {
+            "en-US": "Error Code",
+            "zh-CN": "错误码"
           },
-          {
-            "access": [],
-            "iid": 5,
-            "format": "uint8",
-            "description": {
-              "en-US": "Error Code",
-              "zh-CN": "错误码"
-            },
-            "value-range": [
-              -10,
-              255,
-              1
-            ],
-            "type": "urn:jd-spec:property:error-code:000016aa:jd:t2:1"
+          "value-range": [
+            -10,
+            255,
+            1
+          ],
+          "type": "urn:jd-spec:property:error-code:000016aa:jd:t2:1"
+        },
+        {
+          "access": [],
+          "iid": 6,
+          "format": "string",
+          "description": {
+            "en-US": "firmware-name",
+            "zh-CN": "固件名称"
           },
-          {
-            "access": [],
-            "iid": 6,
-            "format": "string",
-            "description": {
-              "en-US": "firmware-name",
-              "zh-CN": "固件名称"
-            },
-            "type": "urn:jd-spec:property:firmware-name:00001c28:jd:t2:1"
+          "type": "urn:jd-spec:property:firmware-name:00001c28:jd:t2:1"
+        },
+        {
+          "unit": "",
+          "access": [],
+          "iid": 7,
+          "format": "uint32",
+          "description": {
+            "en-US": "Firmware Size",
+            "zh-CN": "固件大小"
           },
-          {
-            "unit": "",
-            "access": [],
-            "iid": 7,
-            "format": "uint32",
-            "description": {
-              "en-US": "Firmware Size",
-              "zh-CN": "固件大小"
-            },
-            "value-range": [
-              1,
-              1000000000,
-              1
-            ],
-            "type": "urn:jd-spec:property:firmware-size:00001c29:jd:t2:1"
-          }
-        ],
-        "events": [
-          {
-            "iid": 1,
-            "description": {
-              "en-US": "Upgrade Succeeded",
-              "zh-CN": "升级成功"
-            },
-            "arguments": [
-              {
-                "piid": 3,
-                "repeat": [
-                  1,
-                  1
-                ]
-              }
-            ],
-            "type": "urn:jd-spec:event:upgrade-succeeded:00000a29:jd:t2:1"
+          "value-range": [
+            1,
+            1000000000,
+            1
+          ],
+          "type": "urn:jd-spec:property:firmware-size:00001c29:jd:t2:1"
+        }
+      ],
+      "events": [
+        {
+          "iid": 1,
+          "description": {
+            "en-US": "Upgrade Succeeded",
+            "zh-CN": "升级成功"
           },
-          {
-            "iid": 2,
-            "description": {
-              "en-US": "Upgrade Failed",
-              "zh-CN": "升级失败"
-            },
-            "arguments": [
-              {
-                "piid": 5,
-                "repeat": [
-                  1,
-                  1
-                ]
-              }
-            ],
-            "type": "urn:jd-spec:event:upgrade-failed:00000a2a:jd:t2:1"
-          }
-        ]
+          "arguments": [
+            {
+              "piid": 3,
+              "repeat": [
+                1,
+                1
+              ]
+            }
+          ],
+          "type": "urn:jd-spec:event:upgrade-succeeded:00000a29:jd:t2:1"
+        },
+        {
+          "iid": 2,
+          "description": {
+            "en-US": "Upgrade Failed",
+            "zh-CN": "升级失败"
+          },
+          "arguments": [
+            {
+              "piid": 5,
+              "repeat": [
+                1,
+                1
+              ]
+            }
+          ],
+          "type": "urn:jd-spec:event:upgrade-failed:00000a2a:jd:t2:1"
+        }
+      ]
+    },
+    {
+      "iid": 5,
+      "description": {
+        "en-US": "Air Conditioner",
+        "zh-CN": "空调"
       },
-      {
-        "iid": 5,
-        "description": {
-          "en-US": "Air Conditioner",
-          "zh-CN": "空调"
+      "type": "urn:jd-spec:service:air-conditioner:000007d6:jd:t2:1",
+      "properties": [
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 1,
+          "format": "bool",
+          "description": {
+            "en-US": "on",
+            "zh-CN": "开关"
+          },
+          "type": "urn:jd-spec:property:on:00000014:jd:t2:1"
         },
-        "type": "urn:jd-spec:service:air-conditioner:000007d6:jd:t2:1",
-        "properties": [
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 1,
-            "format": "bool",
-            "description": {
-              "en-US": "on",
-              "zh-CN": "开关"
-            },
-            "type": "urn:jd-spec:property:on:00000014:jd:t2:1"
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 2,
+          "format": "uint8",
+          "description": {
+            "en-US": "Mode",
+            "zh-CN": "模式"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 2,
-            "format": "uint8",
-            "description": {
-              "en-US": "Mode",
-              "zh-CN": "模式"
+          "type": "urn:jd-spec:property:mode:00000007:jd:t2:1",
+          "value-list": [
+            {
+              "description": "Auto",
+              "value": 0
             },
-            "type": "urn:jd-spec:property:mode:00000007:jd:t2:1",
-            "value-list": [
-              {
-                "description": "Auto",
-                "value": 0
-              },
-              {
-                "description": "Cool",
-                "value": 1
-              },
-              {
-                "description": "Dry",
-                "value": 2
-              },
-              {
-                "description": "Fan",
-                "value": 3
-              },
-              {
-                "description": "Heat",
-                "value": 4
-              }
-            ]
+            {
+              "description": "Cool",
+              "value": 1
+            },
+            {
+              "description": "Dry",
+              "value": 2
+            },
+            {
+              "description": "Fan",
+              "value": 3
+            },
+            {
+              "description": "Heat",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "unit": "celsius",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 3,
+          "format": "uint8",
+          "description": {
+            "en-US": "Target Temperature",
+            "zh-CN": "目标温度"
           },
-          {
-            "unit": "celsius",
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 3,
-            "format": "uint8",
-            "description": {
-              "en-US": "Target Temperature",
-              "zh-CN": "目标温度"
-            },
-            "value-range": [
-              16,
-              31,
-              1
-            ],
-            "type": "urn:jd-spec:property:target-temperature:00000fba:jd:t2:1"
+          "value-range": [
+            16,
+            31,
+            1
+          ],
+          "type": "urn:jd-spec:property:target-temperature:00000fba:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 4,
+          "format": "uint8",
+          "description": {
+            "en-US": "Fan Level",
+            "zh-CN": "风速"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 4,
-            "format": "uint8",
-            "description": {
-              "en-US": "Fan Level",
-              "zh-CN": "风速"
+          "type": "urn:jd-spec:property:fan-level:00000fc0:jd:t2:1",
+          "value-list": [
+            {
+              "description": "Auto",
+              "value": 0
             },
-            "type": "urn:jd-spec:property:fan-level:00000fc0:jd:t2:1",
-            "value-list": [
-              {
-                "description": "Auto",
-                "value": 0
-              },
-              {
-                "description": "Low",
-                "value": 1
-              },
-              {
-                "description": "Middle",
-                "value": 2
-              },
-              {
-                "description": "High",
-                "value": 3
-              }
-            ]
+            {
+              "description": "Low",
+              "value": 1
+            },
+            {
+              "description": "Middle",
+              "value": 2
+            },
+            {
+              "description": "High",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 5,
+          "format": "bool",
+          "description": {
+            "en-US": "Fan Horizontal Swing",
+            "zh-CN": "左右扫风"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 5,
-            "format": "bool",
-            "description": {
-              "en-US": "Fan Horizontal Swing",
-              "zh-CN": "左右扫风"
-            },
-            "type": "urn:jd-spec:property:fan-horizontal-swing:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:fan-horizontal-swing:00000fc0:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 6,
+          "format": "bool",
+          "description": {
+            "en-US": "Fan Vertical Swing",
+            "zh-CN": "上下扫风"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 6,
-            "format": "bool",
-            "description": {
-              "en-US": "Fan Vertical Swing",
-              "zh-CN": "上下扫风"
-            },
-            "type": "urn:jd-spec:property:fan-vertical-swing:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:fan-vertical-swing:00000fc0:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 7,
+          "format": "bool",
+          "description": {
+            "en-US": "Enhance",
+            "zh-CN": "强力"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 7,
-            "format": "bool",
-            "description": {
-              "en-US": "Enhance",
-              "zh-CN": "强力"
-            },
-            "type": "urn:jd-spec:property:enhance:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:enhance:00000fc0:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 8,
+          "format": "bool",
+          "description": {
+            "en-US": "Sleep",
+            "zh-CN": "睡眠"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 8,
-            "format": "bool",
-            "description": {
-              "en-US": "Sleep",
-              "zh-CN": "睡眠"
-            },
-            "type": "urn:jd-spec:property:sleep:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:sleep:00000fc0:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 9,
+          "format": "bool",
+          "description": {
+            "en-US": "ECO",
+            "zh-CN": "ECO"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 9,
-            "format": "bool",
-            "description": {
-              "en-US": "ECO",
-              "zh-CN": "ECO"
-            },
-            "type": "urn:jd-spec:property:eco:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:eco:00000fc0:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 10,
+          "format": "bool",
+          "description": {
+            "en-US": "Sanitization",
+            "zh-CN": "杀菌"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 10,
-            "format": "bool",
-            "description": {
-              "en-US": "Sanitization",
-              "zh-CN": "杀菌"
-            },
-            "type": "urn:jd-spec:property:sanitization:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:sanitization:00000fc0:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 11,
+          "format": "bool",
+          "description": {
+            "en-US": "Electric Auxiliary Heating",
+            "zh-CN": "电辅热"
           },
-          {
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 11,
-            "format": "bool",
-            "description": {
-              "en-US": "Electric Auxiliary Heating",
-              "zh-CN": "电辅热"
-            },
-            "type": "urn:jd-spec:property:electric-auxiliary-heating:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:electric-auxiliary-heating:00000fc0:jd:t2:1"
+        },
+        {
+          "unit": "minutes",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 12,
+          "format": "uint16",
+          "description": {
+            "en-US": "Delay On",
+            "zh-CN": "延时开"
           },
-          {
-            "unit": "minutes",
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 12,
-            "format": "uint16",
-            "description": {
-              "en-US": "Delay On",
-              "zh-CN": "延时开"
-            },
-            "value-range": [
-              0,
-              1440,
-              10
-            ],
-            "type": "urn:jd-spec:property:delay-on:00000fc0:jd:t2:1"
+          "value-range": [
+            0,
+            1440,
+            10
+          ],
+          "type": "urn:jd-spec:property:delay-on:00000fc0:jd:t2:1"
+        },
+        {
+          "unit": "seconds",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 13,
+          "format": "uint32",
+          "description": {
+            "en-US": "Delay On Create Time",
+            "zh-CN": "延时开创建时间"
           },
-          {
-            "unit": "seconds",
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 13,
-            "format": "uint32",
-            "description": {
-              "en-US": "Delay On Create Time",
-              "zh-CN": "延时开创建时间"
-            },
-            "type": "urn:jd-spec:property:delay-on-create-time:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:delay-on-create-time:00000fc0:jd:t2:1"
+        },
+        {
+          "unit": "minutes",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 14,
+          "format": "uint16",
+          "description": {
+            "en-US": "Delay Off",
+            "zh-CN": "延时关"
           },
-          {
-            "unit": "minutes",
-            "access": [
-              "read",
-              "write",
-              "notify"
-            ],
-            "iid": 14,
-            "format": "uint16",
-            "description": {
-              "en-US": "Delay Off",
-              "zh-CN": "延时关"
-            },
-            "value-range": [
-              0,
-              1440,
-              10
-            ],
-            "type": "urn:jd-spec:property:delay-off:00000fc0:jd:t2:1"
+          "value-range": [
+            0,
+            1440,
+            10
+          ],
+          "type": "urn:jd-spec:property:delay-off:00000fc0:jd:t2:1"
+        },
+        {
+          "unit": "seconds",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "iid": 15,
+          "format": "uint32",
+          "description": {
+            "en-US": "Delay Off Create Time",
+            "zh-CN": "延时关创建时间"
           },
-          {
-            "unit": "seconds",
-            "access": [
-              "read",
-              "notify"
-            ],
-            "iid": 15,
-            "format": "uint32",
-            "description": {
-              "en-US": "Delay Off Create Time",
-              "zh-CN": "延时关创建时间"
-            },
-            "type": "urn:jd-spec:property:delay-off-create-time:00000fc0:jd:t2:1"
-          }
-        ]
+          "type": "urn:jd-spec:property:delay-off-create-time:00000fc0:jd:t2:1"
+        }
+      ]
+    },
+    {
+      "iid": 6,
+      "description": {
+        "en-US": "Timer",
+        "zh-CN": "定时器"
       },
-      {
-        "iid": 6,
-        "description": {
-          "en-US": "Timer",
-          "zh-CN": "定时器"
+      "type": "urn:jd-spec:service:timer:000007d6:jd:t2:1",
+      "properties": [
+        {
+          "access": [],
+          "iid": 1,
+          "format": "bool",
+          "description": {
+            "en-US": "Generic On/Off",
+            "zh-CN": "通用开关"
+          },
+          "type": "urn:jd-spec:property:on:00000fc0:jd:t2:1"
         },
-        "type": "urn:jd-spec:service:timer:000007d6:jd:t2:1",
-        "properties": [
-          {
-            "access": [],
-            "iid": 1,
-            "format": "bool",
-            "description": {
-              "en-US": "Generic On/Off",
-              "zh-CN": "通用开关"
-            },
-            "type": "urn:jd-spec:property:on:00000fc0:jd:t2:1"
+        {
+          "access": [],
+          "iid": 2,
+          "format": "uint32",
+          "description": {
+            "en-US": "Time",
+            "zh-CN": "时间"
           },
-          {
-            "access": [],
-            "iid": 2,
-            "format": "uint32",
-            "description": {
-              "en-US": "Time",
-              "zh-CN": "时间"
-            },
-            "type": "urn:jd-spec:property:time:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:time:00000fc0:jd:t2:1"
+        },
+        {
+          "access": [],
+          "iid": 3,
+          "format": "bool",
+          "description": {
+            "en-US": "Validation",
+            "zh-CN": "有效"
           },
-          {
-            "access": [],
-            "iid": 3,
-            "format": "bool",
-            "description": {
-              "en-US": "Validation",
-              "zh-CN": "有效"
-            },
-            "type": "urn:jd-spec:property:validation:00000fc0:jd:t2:1"
+          "type": "urn:jd-spec:property:validation:00000fc0:jd:t2:1"
+        },
+        {
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "iid": 4,
+          "format": "combination",
+          "members": [
+            1,
+            2,
+            3
+          ],
+          "description": {
+            "en-US": "Timer1",
+            "zh-CN": "定时器1"
           },
-          {
-            "access": ["read", "write", "notify"],
-            "iid": 4,
-            "format": "combo",
-            "members": [
-              1, 2, 3
-            ],
-            "description": {
-              "en-US": "Timer1",
-              "zh-CN": "定时器1"
-            },
-            "type": "urn:jd-spec:property:timer1:00000fc0:jd:t2:1"
-          }
-        ]
-      }
-    ],
-    "type": "urn:jd-spec:device:air-conditioner:0000012d:jd:t2:1"
-  }
+          "type": "urn:jd-spec:property:timer1:00000fc0:jd:t2:1"
+        }
+      ]
+    }
+  ],
+  "type": "urn:jd-spec:device:air-conditioner:0000012d:jd:t2:1"
 }
