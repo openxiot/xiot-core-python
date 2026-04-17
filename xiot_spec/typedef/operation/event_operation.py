@@ -45,19 +45,19 @@ class EventOperation(AbstractOperation):
     def oid(self) -> Optional[str]:
         return self._oid
 
-    def set_oid(self, oid: str) -> EventOperation:
+    @oid.setter
+    def oid(self, oid: str):
         self._oid = oid
-        return self
 
     @property
     def arguments(self) -> Dict[int, ArgumentOperation]:
         return self._arguments
 
-    def set_arguments(self, list_args: Collection[ArgumentOperation]) -> EventOperation:
+    @arguments.setter
+    def arguments(self, list_args: Collection[ArgumentOperation]):
         if list_args:
             for a in list_args:
                 self._arguments[a.piid] = a
-        return self
 
     @property
     def did(self) -> str:

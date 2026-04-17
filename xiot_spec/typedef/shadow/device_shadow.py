@@ -1,6 +1,9 @@
 from __future__ import annotations
-from typing import Collection, List, Optional
+
+from typing import Collection
+
 from .shadow import Shadow
+
 
 class DeviceShadow:
     def __init__(self, did: str, shadows: Collection[Shadow]):
@@ -20,5 +23,5 @@ class DeviceShadow:
         return self._shadows
 
     @shadows.setter
-    def shadows(self, shadows: List[Shadow]):
+    def shadows(self, shadows: list[Shadow]):
         self._shadows = shadows

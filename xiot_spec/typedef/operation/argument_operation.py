@@ -5,10 +5,10 @@ from typing import Optional, Dict
 class ArgumentOperation:
     def __init__(self,
                  piid: int,
-                 values: Optional[list[object]] = None,
-                 value: Optional[object] = None):
+                 values: Optional[list[Any]] = None,
+                 value: Optional[Any] = None):
         self._piid: int = piid
-        self._values: list[object] = []
+        self._values: list[Any] = []
 
         if value is not None:
             self._values.append(value)
@@ -20,7 +20,7 @@ class ArgumentOperation:
         return self._piid
 
     @property
-    def values(self) -> list[object]:
+    def values(self) -> list[Any]:
         return self._values
 
     def __str__(self) -> str:

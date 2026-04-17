@@ -1,43 +1,35 @@
 from __future__ import annotations
+from typing import Optional
 
 import copy
 import datetime
-from typing import Optional, List
 
-
-# 占位：Urn/UrnType（原代码未提供完整定义）
-class UrnType:
-    GROUP = "GROUP"
-    DEVICE = "DEVICE"
-
-class Urn:
-    def __init__(self, types: List[str], value: str):
-        self.types = types
-        self.value = value
+from xiot_spec.typedef.definition.urn.urn import Urn
+from xiot_spec.typedef.definition.urn.urn_type import UrnType
 
 class Summary:
     _FORMAT = datetime.datetime.strptime("2000-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").strftime
 
     def __init__(self,
                  type_val: Optional[Urn | str] = None,
-                 online: Optional[bool] = None,
+                 online: bool = False,
                  protocol: Optional[str] = None,
                  parent_id: Optional[str] = None,
                  root_id: Optional[str] = None,
-                 members: Optional[List[str]] = None):
+                 members: Optional[list[str]] = None):
         self._type: Optional[Urn] = None
-        self._online: Optional[bool] = online
+        self._online: bool = online
         self._cloud_id: Optional[str] = None
         self._protocol: Optional[str] = protocol
         self._parent_id: Optional[str] = parent_id
         self._root_id: Optional[str] = root_id
-        self._members: List[str] = []
+        self._members: list[str] = []
         self._last_online: datetime.datetime = datetime.datetime.now()
         self._last_offline: datetime.datetime = datetime.datetime.now()
 
         # 初始化type
         if isinstance(type_val, str):
-            self._type = Urn([UrnType.GROUP, UrnType.DEVICE], type_val)
+            self._type = Urn(types = [UrnType.GROUP, UrnType.DEVICE], string = type_val)
         elif isinstance(type_val, Urn):
             self._type = type_val
 
@@ -67,12 +59,12 @@ class Summary:
     @type.setter
     def type(self, type_val: Urn | str):
         if isinstance(type_val, str):
-            self._type = Urn([UrnType.DEVICE, UrnType.GROUP], type_val)
+            self._type = Urn(types = [UrnType.GROUP, UrnType.DEVICE], string = type_val)
         else:
             self._type = type_val
 
     @property
-    def online(self) -> Optional[bool]:
+    def online(self) -> bool:
         return self._online
 
     @online.setter
@@ -96,11 +88,11 @@ class Summary:
         self._root_id = root_id
 
     @property
-    def members(self) -> List[str]:
+    def members(self) -> list[str]:
         return self._members
 
     @members.setter
-    def members(self, members: List[str]):
+    def members(self, members: list[str]):
         self._members.clear()
         if members:
             self._members.extend(members)
@@ -202,7 +194,7 @@ class Summary:
         self._type = type_val
         return True
 
-    def _change_online(self, online: Optional[bool]) -> bool:
+    def _change_online(self, online: bool) -> bool:
         if self._online == online:
             return False
         self._online = online
@@ -232,7 +224,7 @@ class Summary:
         self._protocol = protocol
         return True
 
-    def _change_members(self, members: List[str]) -> bool:
+    def _change_members(self, members: list[str]) -> bool:
         changed = False
         if len(members) != len(self._members):
             self.members = members

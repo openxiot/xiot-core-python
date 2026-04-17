@@ -17,6 +17,11 @@ def run_all_tests() -> None:
         "tests.codec.definition.test_property_definition_codec",
         "tests.codec.definition.test_service_definition_codec",
         "tests.codec.instance.test_device_instance_codec",
+        "tests.codec.operation.test_action_operation_codec",
+        "tests.codec.operation.test_event_operation_codec",
+        "tests.codec.operation.test_property_operation_codec",
+        "tests.codec.shadow.test_shadow_codec",
+        "tests.codec.summary.test_summary_codec",
         "tests.typedef.definition.type.test_action_type"
     ]
 

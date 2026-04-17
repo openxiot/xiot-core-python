@@ -77,9 +77,9 @@ class PropertyOperation(AbstractOperation):
     def arguments_compact(self) -> bool:
         return self._arguments_compact
 
-    def set_arguments_compact(self, arguments_compact: bool) -> PropertyOperation:
+    @arguments_compact.setter
+    def arguments_compact(self, arguments_compact: bool):
         self._arguments_compact = arguments_compact
-        return self
 
     def to_string(self, pretty: bool, tab: bool) -> str:
         b = []
