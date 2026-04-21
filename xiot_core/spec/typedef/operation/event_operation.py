@@ -31,7 +31,7 @@ class EventOperation(AbstractOperation):
 
         # 设置参数
         if arguments:
-            self.set_arguments(arguments)
+            self.arguments = arguments
 
         # 校验eid有效性
         if self._eid.invalid:

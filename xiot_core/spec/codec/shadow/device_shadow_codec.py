@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import List, Optional, Dict, Any, Collection
 from shadow_codec import ShadowCodec
+from spec.typedef.shadow.device_shadow import DeviceShadow
 
 
 class DeviceShadowCodec:
@@ -19,7 +20,7 @@ class DeviceShadowCodec:
     @staticmethod
     def decode_single(obj: Dict[str, Any]) -> DeviceShadow:
         """解码单个字典为DeviceShadow"""
-        did = obj.get("did")
+        did = obj.get("did", "")
         array = obj.get("shadows", [])
         return DeviceShadow(did, ShadowCodec.decode_array(array))
 
@@ -35,6 +36,6 @@ class DeviceShadowCodec:
     def encode_single(device: DeviceShadow) -> Dict[str, Any]:
         """编码单个DeviceShadow为字典"""
         return {
-            "did": device.did(),
-            "shadows": ShadowCodec.encode_collection(device.shadows())
+            "did": device.did,
+            "shadows": ShadowCodec.encode_collection(device.shadows)
         }

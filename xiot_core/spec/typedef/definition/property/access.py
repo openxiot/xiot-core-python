@@ -1,5 +1,3 @@
-from typing import List
-
 class Access:
     WRITABLE = 0x01
     READABLE = 0x02
@@ -43,7 +41,7 @@ class Access:
         return self.value
 
     @staticmethod
-    def value_of_list(list_: List[str]) -> "Access":
+    def value_of_list(list_: list[str]) -> "Access":
         access = Access()
         for v in list_:
             if v == "read":
@@ -54,7 +52,7 @@ class Access:
                 access.set_notifiable(True)
         return access
 
-    def to_list(self) -> List[str]:
+    def to_list(self) -> list[str]:
         array = []
         if self.is_readable():
             array.append("read")

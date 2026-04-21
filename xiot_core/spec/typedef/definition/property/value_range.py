@@ -30,10 +30,12 @@ class ValueRange(ConstraintValue[T], Generic[T]):
     def _init(self, fmt: DataFormat, min_: object, max_: object, step: object) -> None:
         self.min_value = fmt.create_value(min_)
         self.max_value = fmt.create_value(max_)
+        min_value = self.min_value
+        max_value = self.max_value
 
-        if self.min_value is None:
+        if min_value is None:
             raise ValueError(f"minValue invalid: {type(min_).__name__} => {min_}")
-        if self.max_value is None:
+        if max_value is None:
             raise ValueError(f"maxValue invalid: {type(max_).__name__} => {max_}")
 
         if step is not None:
@@ -45,12 +47,21 @@ class ValueRange(ConstraintValue[T], Generic[T]):
             self.step_value = None
             self.has_step = False
 
-        if not fmt.check_min_max(self.min_value, self.max_value, self.step_value):
+        if not fmt.check_min_max(min_value, max_value, self.step_value):
             raise ValueError(f"check(min, max, step) failed, min: {min_} max: {max_} step:{step}")
 
     def validate(self, value: DataValue[T]) -> bool:
+        min_value = self.min_value
+        max_value = self.max_value
+
+        if min_value is None:
+            raise ValueError("minValue is None")
+
+        if max_value is None:
+            raise ValueError("maxValue is None")
+
         return self.format.validate(
-            value, self.min_value, self.max_value,
+            value, min_value, max_value,
             self.step_value if self.has_step else None
         )
 
@@ -79,7 +90,15 @@ class ValueRange(ConstraintValue[T], Generic[T]):
         self._step_value = val
 
     def to_list(self) -> List[object]:
-        list_ = [self.min_value.raw_value(), self.max_value.raw_value()]
+        min_ = self.min_value
+        max_ = self.max_value
+        step_ = self.max_value
+        if min_ is None or max_ is None:
+            raise ValueError("min or max is None")
+        list_ = [min_.raw_value(), max_.raw_value()]
         if self.has_step:
-            list_.append(self.step_value.raw_value())
+            if step_ is None:
+                raise ValueError("step is None")
+            else:
+                list_.append(step_.raw_value())
         return list_

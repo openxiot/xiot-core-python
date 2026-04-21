@@ -66,8 +66,11 @@ class PropertyCodec(Generic[T]):
             Spec.IID: p.iid,
             Spec.TYPE: str(p.type),
             Spec.FORMAT: str(p.format),
-            Spec.ACCESS: p.access.to_list()
         }
+
+        access = p.access
+        if access is not None:
+            o[Spec.ACCESS] = access.to_list()
 
         if p.description and len(p.description) > 0:
             o[Spec.DESCRIPTION] = DescriptionCodec.encode(p.description)

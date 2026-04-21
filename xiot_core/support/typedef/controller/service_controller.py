@@ -43,11 +43,13 @@ class ServiceController(Service):
             self._events[e.iid] = e
 
     def handle_property_changed(self, o: PropertyOperation) -> None:
-        p = self._properties.get(o.pid.piid)
-        if p is not None:
-            p.handle_property_changed(o)
-        else:
-            raise IotError(Status.PROPERTY_NOT_FOUND, f"property not found: {o.siid}")
+        pid = o.pid
+        if pid is not None:
+            p = self._properties.get(pid.piid)
+            if p is not None:
+                p.handle_property_changed(o)
+            else:
+                raise IotError(Status.PROPERTY_NOT_FOUND, f"property not found: {o.siid}")
 
     def handle_event_occurred(self, o: EventOperation) -> None:
         e = self._events.get(o.iid)
