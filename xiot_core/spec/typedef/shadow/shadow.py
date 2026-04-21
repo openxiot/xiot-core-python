@@ -1,22 +1,22 @@
 from __future__ import annotations
-from typing import Optional, Any
+from typing import Optional
 
 class Shadow:
     def __init__(self,
                  did: str,
                  siid: int,
                  piid: int,
-                 value: Any):
+                 value: object):
         self._did: str = did
         self._siid: int = siid
         self._piid: int = piid
-        self._value: Any = value
+        self._value: object = value
         self._status: int = 0
         self._description: Optional[str] = None
 
     # 简化构造（无did）
     @classmethod
-    def from_siid_piid_value(cls, siid: int, piid: int, value: Any) -> Shadow:
+    def from_siid_piid_value(cls, siid: int, piid: int, value: object) -> Shadow:
         return cls("", siid, piid, value)
 
     @property
@@ -45,11 +45,11 @@ class Shadow:
         return self
 
     @property
-    def value(self) -> Any:
+    def value(self) -> object:
         return self._value
 
     @value.setter
-    def value(self, value: Any):
+    def value(self, value: object):
         self._value = value
 
     @property

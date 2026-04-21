@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Generic, TypeVar, Any, Protocol
+from typing import Generic, TypeVar, Protocol
 
 T = TypeVar('T')
 
 # 定义 Protocol 描述 DataValue 的核心特征
 class DataValueProtocol(Protocol):
-    def raw_value(self) -> Any: ...
+    def raw_value(self) -> object: ...
 
 # E 绑定到实现 DataValueProtocol 的类型（等价于 DataValue[Any]）
 E = TypeVar('E', bound=DataValueProtocol)

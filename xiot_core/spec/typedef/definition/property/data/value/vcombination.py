@@ -1,27 +1,27 @@
-from typing import Optional, Dict, Any
+from typing import Optional, Dict
 
 from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
 
 
-class Vcombination(DataValue[Dict[int, Any]]):
-    def __init__(self, value: Optional[Dict[Any, Any]] = None):
-        self._value: Dict[int, Any] = {}
+class Vcombination(DataValue[Dict[int, object]]):
+    def __init__(self, value: Optional[Dict[object, object]] = None):
+        self._value: Dict[int, object] = {}
         if value is not None and isinstance(value, dict):
             for k, v in value.items():
                 if isinstance(k, int):
                     self._value[k] = v
 
-    def get_value(self, k: int) -> Any:
+    def get_value(self, k: int) -> object:
         return self._value.get(k)
 
-    def set_value(self, k: int, v: Any) -> None:
+    def set_value(self, k: int, v: object) -> None:
         self._value[k] = v
 
-    def raw_value(self) -> Dict[int, Any]:
+    def raw_value(self) -> Dict[int, object]:
         return self._value
 
     @staticmethod
-    def value_of(obj: Any) -> Optional['Vcombination']:
+    def value_of(obj: object) -> Optional['Vcombination']:
         if isinstance(obj, dict):
             return Vcombination(obj)
         return None
@@ -29,7 +29,7 @@ class Vcombination(DataValue[Dict[int, Any]]):
     def __str__(self) -> str:
         return str(self._value)
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if self is other:
             return True
         if not isinstance(other, Vcombination):

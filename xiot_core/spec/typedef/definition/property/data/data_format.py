@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Type, Optional, Any
+from typing import Type, Optional
 
 from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
 from xiot_core.spec.typedef.definition.property.data.value.vbool import Vbool
@@ -46,18 +46,18 @@ class DataFormat(Enum):
                 return fmt
         raise ValueError(f"DataFormat invalid: {s}")
 
-    def check(self, value: DataValue[Any]) -> bool:
+    def check(self, value: DataValue[object]) -> bool:
         """检查 DataValue 类型是否匹配"""
         cls = self.get_class()
         if cls is None:
             return False
         return isinstance(value, cls)
 
-    def check_min_max(self, min_val: DataValue[Any], max_val: DataValue[Any], step: Optional[DataValue[Any]]) -> bool:
+    def check_min_max(self, min_val: DataValue[object], max_val: DataValue[object], step: Optional[DataValue[object]]) -> bool:
         """对应 Java 的 check(min, max, step) 方法"""
         return min_val.less_equals(max_val)
 
-    def validate(self, value: DataValue[Any], min_val: DataValue[Any], max_val: DataValue[Any], step: Optional[DataValue[Any]]) -> bool:
+    def validate(self, value: DataValue[object], min_val: DataValue[object], max_val: DataValue[object], step: Optional[DataValue[object]]) -> bool:
         """验证值是否符合 min/max/step 规则"""
         if step is None:
             return value.validate(min_val, max_val)
@@ -99,14 +99,14 @@ class DataFormat(Enum):
         }
         return mapping.get(self, "unknown")
 
-    def get_python_class(self) -> Type[DataValue[Any]]:
+    def get_python_class(self) -> Type[DataValue[object]]:
         """获取对应的 DataValue 子类"""
         cls = self.get_class()
         if cls is None:
             raise RuntimeError("DataFormat invalid")
         return cls
 
-    def create_object_value(self, string: str) -> Any:
+    def create_object_value(self, string: str) -> object:
         """从字符串创建对应类型的原始值"""
         try:
             if self == DataFormat.BOOL:
@@ -127,14 +127,14 @@ class DataFormat(Enum):
         except (ValueError, TypeError) as e:
             raise ValueError(f"createObjectValue failed: {e}") from e
 
-    def create_default_value(self) -> DataValue[Any]:
+    def create_default_value(self) -> DataValue[object]:
         """创建默认值的 DataValue 实例"""
         cls = self.get_class()
         if cls is None:
             raise ValueError(f"createObjectValue failed, invalid type: {self}")
         return cls()
 
-    def create_value(self, value: Any) -> Optional[DataValue[Any]]:
+    def create_value(self, value: object) -> Optional[DataValue[object]]:
         """从原始值创建 DataValue 实例"""
         cls = self.get_class()
         if cls is None:
@@ -142,7 +142,7 @@ class DataFormat(Enum):
         return cls.value_of(value)
 
     def get_class(self) -> type[Vbool] | type[Vuint8] | type[Vuint16] | type[Vuint32] | type[Vint8] | type[Vint16] | \
-                           type[Vint32] | type[Vint64] | type[Vfloat] | type[Vstring] | None | Any:
+                           type[Vint32] | type[Vint64] | type[Vfloat] | type[Vstring] | None:
         type_mapping = {
             DataFormat.BOOL: Vbool,
             DataFormat.UINT8: Vuint8,

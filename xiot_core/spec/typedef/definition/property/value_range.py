@@ -8,7 +8,7 @@ T = TypeVar('T')
 
 class ValueRange(ConstraintValue[T], Generic[T]):
     def __init__(self, format_: DataFormat, list_: List[object] = None,
-                 min_: object = None, max_: object = None, step: object = None):
+                 min_: object = None, max_: object = None, step_: object = None):
         self.format = format_
         self.min_value: Optional[DataValue[T]] = None
         self.max_value: Optional[DataValue[T]] = None
@@ -23,7 +23,7 @@ class ValueRange(ConstraintValue[T], Generic[T]):
             else:
                 raise ValueError("value list is invalid (size must be 2 or 3)")
         elif min_ is not None and max_ is not None:
-            self._init(format_, min_, max_, step)
+            self._init(format_, min_, max_, step_)
         else:
             raise ValueError("invalid parameters")
 

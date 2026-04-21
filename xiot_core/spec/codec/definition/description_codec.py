@@ -1,11 +1,11 @@
-from typing import Any, Dict, Union
+from typing import Dict, Union
 
 from xiot_core.spec.typedef.constant.spec import Spec
 
 
 class DescriptionCodec:
     @staticmethod
-    def decode(obj: Any) -> Dict[str, str]:
+    def decode(obj: object) -> Dict[str, str]:
         description: Dict[str, str] = {}
         if isinstance(obj, str):
             description[Spec.DESCRIPTION_EN_US] = obj

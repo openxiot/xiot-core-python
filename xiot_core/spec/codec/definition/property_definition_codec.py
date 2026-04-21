@@ -1,4 +1,4 @@
-from typing import TypeVar, Generic, Dict, Any
+from typing import TypeVar, Generic, Dict
 
 from xiot_core.spec.codec.definition.access_codec import AccessCodec
 from xiot_core.spec.codec.definition.description_codec import DescriptionCodec
@@ -62,7 +62,7 @@ class PropertyDefinitionCodec(Generic[T]):
 
     @staticmethod
     def encode(def_: PropertyDefinition[T]) -> dict:
-        obj: Dict[str, Any] = {}
+        obj: Dict[str, object] = {}
         if def_.type:
             obj[Spec.TYPE] = str(def_.type)
 

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Dict, Optional, Any
+from typing import Dict, Optional
 
 from xiot_core.spec.typedef.definition.urn.service_type import ServiceType
 from xiot_core.spec.typedef.instance.action import Action
@@ -11,7 +11,7 @@ class Service:
         self._iid = iid
         self._type = type_
         self._description: Dict[str, str] = {}
-        self._properties: Dict[int, Property[Any]] = {}
+        self._properties: Dict[int, Property[object]] = {}
         self._actions: Dict[int, Action] = {}
         self._events: Dict[int, Event] = {}
 
@@ -45,11 +45,11 @@ class Service:
 
     # properties 属性
     @property
-    def properties(self) -> Dict[int, Property[Any]]:
+    def properties(self) -> Dict[int, Property[object]]:
         return self._properties
 
     @properties.setter
-    def properties(self, properties: list[Property[Any]]) -> None:
+    def properties(self, properties: list[Property[object]]) -> None:
         for p in properties:
             self._properties[p.iid] = p
 

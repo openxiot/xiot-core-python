@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Generic, TypeVar, Any
+from typing import Dict, Optional, Generic, TypeVar
 
 from xiot_core.spec.typedef.definition.property.data.data_format import DataFormat
 from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
@@ -37,7 +37,7 @@ class ValueDefinition(Generic[T]):
     def description(self, description: Dict[str, str]) -> None:
         self._description = description
 
-    def get_value(self) -> Any:
+    def get_value(self) -> T:
         if self._value is None:
             raise ValueError("value is None")
         return self._value.raw_value()

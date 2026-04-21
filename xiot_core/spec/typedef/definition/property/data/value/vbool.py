@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Optional
 
 from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
 
@@ -14,7 +14,7 @@ class Vbool(DataValue[bool]):
         return 1 if self._value else 0
 
     @staticmethod
-    def value_of(obj: Any) -> Optional['Vbool']:
+    def value_of(obj: object) -> Optional['Vbool']:
         if isinstance(obj, bool):
             return Vbool(obj)
         if isinstance(obj, int):

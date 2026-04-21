@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Optional
 
 from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
 
@@ -45,7 +45,7 @@ class Vint64(DataValue[int]):
         return self._value
 
     @staticmethod
-    def value_of(obj: Any) -> Optional['Vint64']:
+    def value_of(obj: object) -> Optional['Vint64']:
         if isinstance(obj, int):
             return Vint64(int(obj))
         return None
@@ -53,7 +53,7 @@ class Vint64(DataValue[int]):
     def __str__(self) -> str:
         return str(self._value)
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if self is other:
             return True
         if not isinstance(other, Vint64):

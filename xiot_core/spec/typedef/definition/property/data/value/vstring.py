@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Optional
 
 from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
 
@@ -11,7 +11,7 @@ class Vstring(DataValue[str]):
         return self._value
 
     @staticmethod
-    def value_of(obj: Any) -> Optional['Vstring']:
+    def value_of(obj: object) -> Optional['Vstring']:
         if isinstance(obj, str):
             return Vstring(obj)
         return None
@@ -19,7 +19,7 @@ class Vstring(DataValue[str]):
     def __str__(self) -> str:
         return self._value
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if self is other:
             return True
         if not isinstance(other, Vstring):

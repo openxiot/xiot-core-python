@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Optional
 
 from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
 
@@ -40,7 +40,7 @@ class Vuint32(DataValue[int]):
         return self._value
 
     @staticmethod
-    def value_of(obj: Any) -> Optional['Vuint32']:
+    def value_of(obj: object) -> Optional['Vuint32']:
         if isinstance(obj, int):
             return Vuint32(int(obj))
         return None
@@ -48,7 +48,7 @@ class Vuint32(DataValue[int]):
     def __str__(self) -> str:
         return str(self._value)
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if self is other:
             return True
         if not isinstance(other, Vuint32):

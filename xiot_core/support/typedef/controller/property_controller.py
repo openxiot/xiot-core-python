@@ -11,8 +11,14 @@ from xiot_core.support.typedef.controller.operator.property_setter_wrapper impor
 T = TypeVar('T')
 
 class PropertyController(Generic[T], Property[T]):
-    def __init__(self, other: Property[T]):
-        super().__init__(other = other)
+    def __init__(self,
+                 other: Optional[Property[T]] = None,
+                 iid: int = 0,
+                 type_: Optional[PropertyType] = None,
+                 access: Access = Access(),
+                 fmt: DataFormat = DataFormat.INT8,
+                 ):
+        super().__init__(other = other, iid = iid, type_ = type_, access = access, fmt = fmt)
         self._setter: Optional[PropertySetterWrapper] = None
         self._observers: Dict[str, Callable[[T], None]] = {}
 
@@ -100,8 +106,15 @@ class PropertyController(Generic[T], Property[T]):
     #     else:
     #         return self.current_value().raw_value()
 
-    # def value_of(self, value: Dict[int, object]) -> T:
-    #     return None
+    def put_value(self, value: Optional[object]):
+        if value is None:
+            raise ValueError("value is None")
 
-    # def to_map(self, value: T) -> Dict[int, object]:
-    #     return {}
+        if not self.set_value(value):
+            raise ValueError("PROPERTY_VALUE_INVALID")
+
+    def value_of(self, value: Dict[int, object]) -> T:
+        return None
+
+    def to_map(self, value: Optional[T]) -> Dict[int, object]:
+        return {}

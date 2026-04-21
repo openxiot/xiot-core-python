@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar, Optional, Dict, Any
+from typing import Generic, TypeVar, Optional, Dict
 
 from xiot_core.spec.typedef.definition.property.access import Access
 from xiot_core.spec.typedef.definition.property.constraint_value import ConstraintValue
@@ -122,7 +122,7 @@ class PropertyDefinition(Generic[T]):
         result = prime * result + (0 if self._type is None else hash(self._type))
         return result
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: 'PropertyDefinition') -> bool:
         if self is other:
             return True
         if other is None:

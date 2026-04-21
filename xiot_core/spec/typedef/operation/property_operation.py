@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Optional, Any
+from typing import Optional
 
 from xiot_core.spec.typedef.operation.abstract_operation import AbstractOperation
 from xiot_core.spec.typedef.status.status import Status
@@ -12,12 +12,12 @@ class PropertyOperation(AbstractOperation):
                  did: Optional[str] = None,
                  siid: Optional[int] = None,
                  piid: Optional[int] = None,
-                 value: Optional[Any] = None,
+                 value: Optional[object] = None,
                  status: Optional[int] = None,
                  description: Optional[str] = None):
         super().__init__()
         self._pid: Optional[PropertyID] = None
-        self._value: Optional[Any] = None
+        self._value: Optional[object] = None
         self._arguments_compact: bool = False
 
         # 处理构造参数
@@ -62,14 +62,14 @@ class PropertyOperation(AbstractOperation):
         return self._pid
 
     @property
-    def value(self) -> Optional[Any]:
+    def value(self) -> Optional[object]:
         return self._value
 
     @value.setter
-    def value(self, value: Any):
+    def value(self, value: object):
         self._value = value
 
-    def set_value_multi(self, *value: Any) -> PropertyOperation:
+    def set_value_multi(self, *value: object) -> PropertyOperation:
         self._value = list(value)
         return self
 

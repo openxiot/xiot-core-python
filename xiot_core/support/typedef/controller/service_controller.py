@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict
 
 from xiot_core.spec.typedef.definition.urn.service_type import ServiceType
 from xiot_core.spec.typedef.instance.service import Service
@@ -17,7 +17,7 @@ class ServiceController(Service):
                  iid: int,
                  type_: ServiceType,
                  description: Dict[str, str] = None,
-                 properties: list[PropertyController[Any]] = None,
+                 properties: list[PropertyController[object]] = None,
                  actions: list[ActionController] = None,
                  events: list[EventController] = None):
         super().__init__(iid, type_)

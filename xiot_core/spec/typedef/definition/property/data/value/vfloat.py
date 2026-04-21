@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Optional
 from decimal import Decimal
 
 from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
@@ -56,7 +56,7 @@ class Vfloat(DataValue[float]):
         return self._value
 
     @staticmethod
-    def value_of(obj: Any) -> Optional['Vfloat']:
+    def value_of(obj: object) -> Optional['Vfloat']:
         if isinstance(obj, (float, int)):
             return Vfloat(obj)
         if isinstance(obj, Decimal):

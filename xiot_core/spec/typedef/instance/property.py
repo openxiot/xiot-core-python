@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar, Dict, Optional, Any
+from typing import Generic, TypeVar, Dict, Optional
 
 from .property_value import PropertyValue
 from ..definition.property.access import Access
@@ -16,7 +16,7 @@ class Property(Generic[T]):
     def __init__(
         self,
         iid: int = 0,
-        property_type: Optional[PropertyType] = None,
+        type_: Optional[PropertyType] = None,
         description: Optional[Dict[str, str]] = None,
         access: Access = Access(),
         fmt: DataFormat = DataFormat.INT8,
@@ -25,7 +25,7 @@ class Property(Generic[T]):
         other: Optional["Property"] = None,
     ):
         self._iid = iid
-        self._type = property_type
+        self._type = type_
         self._description = description or {}
         self._access = access
         self._format = fmt
@@ -113,7 +113,7 @@ class Property(Generic[T]):
         self._members = value
 
     @property
-    def current_value(self) -> Any:
+    def current_value(self) -> Optional[DataValue[T]]:
         return self._value.value
 
     @property
@@ -155,7 +155,7 @@ class Property(Generic[T]):
         return self._value.default_value
 
     @default_value.setter
-    def default_value(self, value: Any) -> None:
+    def default_value(self, value: object) -> None:
         """设置默认值"""
         if value is not None:
             data_value = self._format.create_value(value)
@@ -164,12 +164,12 @@ class Property(Generic[T]):
             else:
                 print(f"property default value validate failed, value: {value}")
 
-    def try_set_value(self, value: Any) -> bool:
+    def try_set_value(self, value: object) -> bool:
         """尝试设置值（不抛异常）"""
         data_value = self._format.create_value(value)
         return self.set_data_value(data_value, write=False)
 
-    def set_value(self, value: Any) -> bool:
+    def set_value(self, value: object) -> bool:
         """设置值"""
         data_value = self._format.create_value(value)
         return self.set_data_value(data_value, write=True)
@@ -218,11 +218,11 @@ class Property(Generic[T]):
     def get_value(self) -> Optional[T]:
         """获取原始值"""
         if self._format == DataFormat.COMBINATION:
-            current_val = self.current_value()
+            current_val = self.current_value
             if current_val and isinstance(current_val.raw_value, dict):
                 return self.value_of(current_val.raw_value)
             return None
-        current_val = self.current_value()
+        current_val = self.current_value
         return current_val.raw_value if current_val else None
 
     def put(self, value: T) -> None:
@@ -234,15 +234,15 @@ class Property(Generic[T]):
             if not self.set_value(value):
                 raise ValueError("PROPERTY_VALUE_INVALID")
 
-    def put_value(self, value: Any) -> None:
+    def put_value(self, value: object) -> None:
         """强制设置值（通用版）"""
         if not self.set_value(value):
             raise ValueError("PROPERTY_VALUE_INVALID")
 
-    def value_of(self, value: Dict[int, Any]) -> Optional[T]:
+    def value_of(self, value: Dict[int, object]) -> Optional[T]:
         """构造组合属性值（子类实现）"""
         return None
 
-    def to_map(self, value: T) -> Dict[int, Any]:
+    def to_map(self, value: T) -> Dict[int, object]:
         """转换为Map（子类实现）"""
         return {}

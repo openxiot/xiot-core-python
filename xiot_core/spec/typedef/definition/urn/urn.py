@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Optional
 
 from .urn_namespace import UrnNamespace
 from .urn_style import UrnStyle
@@ -220,7 +220,7 @@ class Urn:
         return ""
 
     # 相等性判断
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: "Urn") -> bool:
         if not isinstance(other, Urn):
             return False
         return (self.value == other.value

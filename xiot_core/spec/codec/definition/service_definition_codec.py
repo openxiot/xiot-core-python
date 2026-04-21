@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict
 
 from xiot_core.spec.codec.definition.description_codec import DescriptionCodec
 from xiot_core.spec.codec.definition.type.action_type_codec import ActionTypeCodec
@@ -38,7 +38,7 @@ class ServiceDefinitionCodec:
 
     @staticmethod
     def encode(def_: ServiceDefinition) -> dict:
-        obj: Dict[str, Any] = {Spec.TYPE: str(def_.type), Spec.DESCRIPTION: DescriptionCodec.encode(def_.description)}
+        obj: Dict[str, object] = {Spec.TYPE: str(def_.type), Spec.DESCRIPTION: DescriptionCodec.encode(def_.description)}
 
         req_props = def_.required_properties
         if req_props:
