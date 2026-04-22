@@ -80,6 +80,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/device/yjl/_medicaloxygenconcentrator/_y67e/_otamanagement" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/device1/jd" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/device1/jd/_light/_jdznsd04sy/_deviceinformation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/xiot_core" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.13 (xiot-core-python) (2)" jdkType="Python SDK" />

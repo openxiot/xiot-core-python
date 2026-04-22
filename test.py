@@ -11,18 +11,19 @@ import sys
 def run_all_tests() -> None:
     """批量运行所有 codec 单元测试"""
     # 测试模块路径
+
     test_modules = [
-        "tests.spec.codec.definition.test_action_definition_codec",
-        "tests.spec.codec.definition.test_event_definition_codec",
-        "tests.spec.codec.definition.test_property_definition_codec",
-        "tests.spec.codec.definition.test_service_definition_codec",
-        "tests.spec.codec.instance.test_device_instance_codec",
-        "tests.spec.codec.operation.test_action_operation_codec",
-        "tests.spec.codec.operation.test_event_operation_codec",
-        "tests.spec.codec.operation.test_property_operation_codec",
-        "tests.spec.codec.shadow.test_shadow_codec",
-        "tests.spec.codec.summary.test_summary_codec",
-        "tests.spec.typedef.definition.type.test_action_type"
+        "tests.xiot_core.spec.codec.definition.test_action_definition_codec",
+        "tests.xiot_core.spec.codec.definition.test_event_definition_codec",
+        "tests.xiot_core.spec.codec.definition.test_property_definition_codec",
+        "tests.xiot_core.spec.codec.definition.test_service_definition_codec",
+        "tests.xiot_core.spec.codec.instance.test_device_instance_codec",
+        "tests.xiot_core.spec.codec.operation.test_action_operation_codec",
+        "tests.xiot_core.spec.codec.operation.test_event_operation_codec",
+        "tests.xiot_core.spec.codec.operation.test_property_operation_codec",
+        "tests.xiot_core.spec.codec.shadow.test_shadow_codec",
+        "tests.xiot_core.spec.codec.summary.test_summary_codec",
+        "tests.xiot_core.spec.typedef.definition.type.test_action_type"
     ]
 
     # 加载所有测试
