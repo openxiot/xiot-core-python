@@ -5,4 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "xiot-core"
 version = "0.0.1"
-dependencies = [] 
+dependencies = []
+
+[tool.setuptools]
+packages = ["xiot_core"]
