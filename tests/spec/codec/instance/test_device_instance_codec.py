@@ -3,7 +3,7 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.instance.device_instance_codec import DeviceInstanceCodec
+from src.spec.codec.instance.device_instance_codec import DeviceInstanceCodec
 
 class TestDeviceInstanceCodec(unittest.TestCase):
     def test_codec(self) -> None:

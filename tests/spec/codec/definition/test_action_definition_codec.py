@@ -3,7 +3,7 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.definition.action_definition_codec import ActionDefinitionCodec
+from src.spec.codec.definition.action_definition_codec import ActionDefinitionCodec
 
 class TestActionDefinitionCodec(unittest.TestCase):
     def test_codec(self) -> None:

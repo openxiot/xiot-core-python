@@ -3,7 +3,7 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.operation.event_operation_codec import EventOperationCodec
+from src.spec.codec.operation.event_operation_codec import EventOperationCodec
 
 class TestEventOperationCodec(unittest.TestCase):
     def test_codec(self) -> None:
@@ -42,8 +42,8 @@ class TestEventOperationCodec(unittest.TestCase):
         operation = EventOperationCodec.QUERY.decode_single(original_json)
         encoded_json = EventOperationCodec.QUERY.encode_single(operation)
 
-        print("old => ", original_json)
-        print("new => ", encoded_json)
+        # print("old => ", original_json)
+        # print("new => ", encoded_json)
 
         # 断言编解码前后内容一致
         self.assertEqual(original_json, encoded_json,f"编解码不一致: {file_path.name}")
@@ -79,8 +79,8 @@ class TestEventOperationCodec(unittest.TestCase):
         operation = EventOperationCodec.RESULT.decode_single(original_json)
         encoded_json = EventOperationCodec.RESULT.encode_single(operation)
 
-        print("old => ", original_json)
-        print("new => ", encoded_json)
+        # print("old => ", original_json)
+        # print("new => ", encoded_json)
 
         # 断言编解码前后内容一致
         self.assertEqual(original_json, encoded_json,f"编解码不一致: {file_path.name}")

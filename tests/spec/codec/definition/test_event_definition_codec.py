@@ -3,7 +3,7 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.definition.event_definition_codec import EventDefinitionCodec
+from src.spec.codec.definition.event_definition_codec import EventDefinitionCodec
 
 class TestEventDefinitionCodec(unittest.TestCase):
     def test_codec(self) -> None:

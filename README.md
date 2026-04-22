@@ -10,3 +10,9 @@ pip install -e .
 ```bash
 python tests/typedef/definition/urn/test_action_type.py
 ```
+
+# run publish
+```bash
+python -m build
+twine upload dist/*
+```

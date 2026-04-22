@@ -1,5 +1,5 @@
 import unittest
-from xiot_core.spec.typedef.definition.urn.action_type import ActionType
+from src.spec.typedef.definition.urn.action_type import ActionType
 
 
 class TestActionType(unittest.TestCase):

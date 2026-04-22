@@ -3,7 +3,7 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.definition.service_definition_codec import ServiceDefinitionCodec
+from src.spec.codec.definition.service_definition_codec import ServiceDefinitionCodec
 
 class TestServiceDefinitionCodec(unittest.TestCase):
     def test_codec(self) -> None:

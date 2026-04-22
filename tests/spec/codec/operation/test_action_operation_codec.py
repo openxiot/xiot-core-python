@@ -3,7 +3,7 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.operation.action_operation_codec import ActionOperationCodec
+from src.spec.codec.operation.action_operation_codec import ActionOperationCodec
 
 class TestActionOperationCodec(unittest.TestCase):
     def test_codec(self) -> None:

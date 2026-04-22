@@ -3,8 +3,8 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.instance.device_instance_codec import DeviceInstanceCodec
-from xiot_core.support.codec.controller.device_controller_codec import DeviceControllerCodec
+from src.spec.codec.instance.device_instance_codec import DeviceInstanceCodec
+from src.support.codec.controller.device_controller_codec import DeviceControllerCodec
 
 
 class TestDeviceControllerCodec(unittest.TestCase):

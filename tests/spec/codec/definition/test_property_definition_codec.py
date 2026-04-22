@@ -3,7 +3,8 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.definition.property_definition_codec import PropertyDefinitionCodec
+from spec.typedef.definition.property.value_range import ValueRange
+from src.spec.codec.definition.property_definition_codec import PropertyDefinitionCodec
 
 class TestPropertyDefinitionCodec(unittest.TestCase):
     def test_codec(self) -> None:
@@ -43,6 +44,9 @@ class TestPropertyDefinitionCodec(unittest.TestCase):
         # 编解码测试
         definition = PropertyDefinitionCodec.decode(original_json)
         encoded_json = PropertyDefinitionCodec.encode(definition)
+
+        # print("old => ", original_json)
+        # print("new => ", encoded_json)
 
         # 断言编解码前后内容一致
         self.assertEqual(original_json, encoded_json,

@@ -3,7 +3,7 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.shadow.shadow_codec import ShadowCodec
+from src.spec.codec.shadow.shadow_codec import ShadowCodec
 
 class TestShadowCodec(unittest.TestCase):
     def test_codec(self) -> None:

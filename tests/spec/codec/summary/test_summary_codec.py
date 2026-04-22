@@ -3,7 +3,7 @@ import os
 import pathlib
 import unittest
 
-from xiot_core.spec.codec.summary.summary_codec import SummaryCodec
+from src.spec.codec.summary.summary_codec import SummaryCodec
 
 class TestSummaryCodec(unittest.TestCase):
     def test_codec(self) -> None:
