@@ -70,10 +70,10 @@ class DeviceController(Generic[T], DeviceInstance):
             invoker_wrapper = ActionInvokerWrapper(did = self._did, siid = siid, operator=invoker)
 
             if isinstance(service, ServiceController):
-                for piid, property_ in service.properties().items():
+                for piid, property_ in service.properties.items():
                     property_.setter = setter_wrapper
 
-                for aiid, action in service.actions().items():
+                for aiid, action in service.actions.items():
                     action.invoker = invoker_wrapper
 
     def __eq__(self, other: object) -> bool:

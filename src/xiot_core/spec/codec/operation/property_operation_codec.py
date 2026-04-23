@@ -66,17 +66,15 @@ class PropertyOperationCodec:
                 return p
 
             def encode_single(self, p: PropertyOperation) -> Dict[str, Any]:
-                obj = {"pid": str(p.pid)}
+                obj: dict[str, object] = {"pid": str(p.pid)}
 
                 if p.is_error:
                     obj["status"] = p.status
                     obj["description"] = p.description
                 else:
-                    if isinstance(p.value, dict):
-                        obj["value"] = CombinationValueCodec.encode_compact(
-                            p.arguments_compact,
-                            p.value
-                        )
+                    vv = p.value
+                    if isinstance(vv, dict):
+                        obj["value"] = CombinationValueCodec.encode_compact(p.arguments_compact, vv)
                     else:
                         obj["value"] = p.value
 
@@ -132,13 +130,15 @@ class PropertyOperationCodec:
                 if p.is_error:
                     return None
 
-                o = {"pid": str(p.pid)}
+                o: dict[str, object] = {"pid": str(p.pid)}
                 # if isinstance(p.value, list):
                 #     o["value"] = ElementValueCodec.encode(p.value)
-                if isinstance(p.value, dict):
+
+                vv = p.value
+                if isinstance(vv, dict):
                     o["value"] = CombinationValueCodec.encode_compact(
                         p.arguments_compact,
-                        p.value
+                        vv
                     )
                 else:
                     o["value"] = p.value
@@ -159,17 +159,17 @@ class PropertyOperationCodec:
                 p = PropertyOperation(pid)
                 p.status = status
 
-                if not p.is_completed():
+                if not p.is_completed:
                     p.description = obj.get("description", "")
 
                 return p
 
             def encode_single(self, p: PropertyOperation) -> Dict[str, Any]:
-                obj = {
+                obj: dict[str, object] = {
                     "pid": str(p.pid),
                     "status": p.status
                 }
-                if not p.is_completed():
+                if not p.is_completed:
                     obj["description"] = p.description
                 return obj
 
@@ -216,7 +216,7 @@ class PropertyOperationCodec:
                 return p
 
             def encode_single(self, p: PropertyOperation) -> Dict[str, Any]:
-                o = {"pid": str(p.pid)}
+                o: dict[str, object] = {"pid": str(p.pid)}
 
                 if not p.is_completed:
                     o["status"] = p.status
@@ -225,11 +225,9 @@ class PropertyOperationCodec:
                 if p.value is not None:
                     # if isinstance(p.value, list):
                     #     o["value"] = ElementValueCodec.encode(p.value)
-                    if isinstance(p.value, dict):
-                        o["value"] = CombinationValueCodec.encode_compact(
-                            p.arguments_compact,
-                            p.value
-                        )
+                    vv = p.value
+                    if isinstance(vv, dict):
+                        o["value"] = CombinationValueCodec.encode_compact(p.arguments_compact, vv)
                     else:
                         o["value"] = p.value
 
@@ -247,19 +245,19 @@ class PropertyOperationCodec:
                 status = obj.get("status", Status.COMPLETED)
 
                 p = PropertyOperation(pid)
-                p.status(status)
+                p.status = status
 
-                if p.is_error():
-                    p.description(obj.get("description", ""))
+                if p.is_error:
+                    p.description = obj.get("description", "")
 
                 return p
 
             def encode_single(self, p: PropertyOperation) -> Dict[str, Any]:
-                obj = {
+                obj: dict[str, object] = {
                     "pid": str(p.pid),
                     "status": p.status
                 }
-                if p.is_error():
+                if p.is_error:
                     obj["description"] = p.description
                 return obj
 

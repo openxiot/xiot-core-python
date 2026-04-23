@@ -1,5 +1,3 @@
-from typing import Dict
-
 from xiot_core.spec.codec.definition.argument_definition_codec import ArgumentDefinitionCodec
 from xiot_core.spec.codec.definition.description_codec import DescriptionCodec
 from xiot_core.spec.typedef.constant.spec import Spec
@@ -28,9 +26,10 @@ class EventDefinitionCodec:
 
     @staticmethod
     def encode(def_: EventDefinition) -> dict:
-        obj: Dict[str, object] = {}
-        obj[Spec.TYPE] = str(def_.type)
-        obj[Spec.DESCRIPTION] = DescriptionCodec.encode(def_.description)
+        obj: dict[str, object] = {
+            Spec.TYPE: str(def_.type),
+            Spec.DESCRIPTION: DescriptionCodec.encode(def_.description)
+        }
 
         arguments = def_.arguments
         if arguments:

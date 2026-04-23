@@ -6,6 +6,7 @@ from xiot_core.spec.typedef.operation.event_operation import EventOperation
 from xiot_core.spec.typedef.status.status import Status
 from xiot_core.spec.typedef.xid.event_id import EventID
 
+
 class EventOperationCodec:
     """事件操作编解码器（对应Java EventOperationCodec）"""
 
@@ -47,8 +48,7 @@ class EventOperationCodec:
             if event.is_error:
                 return None
 
-            o: Dict[str, Any] = {}
-            o["eid"] = str(event.eid)
+            o: dict[str, object] = {"eid": str(event.eid)}
 
             if event.oid is not None:
                 o["oid"] = event.oid
@@ -56,7 +56,7 @@ class EventOperationCodec:
             if len(event.arguments) > 0:
                 o["arguments"] = ArgumentOperationCodec.encode_compact(
                     event.arguments_compact,
-                    event.arguments.values()
+                    list(event.arguments.values())
                 )
 
             return o
@@ -82,9 +82,10 @@ class EventOperationCodec:
             return operation
 
         def encode_single(self, operation: EventOperation) -> Dict[str, Any]:
-            o: Dict[str, Any] = {}
-            o["eid"] = str(operation.eid)
-            o["status"] = operation.status
+            o: dict[str, object] = {
+                "eid": str(operation.eid),
+                "status": operation.status
+            }
 
             if not operation.is_completed:
                 o["description"] = operation.description

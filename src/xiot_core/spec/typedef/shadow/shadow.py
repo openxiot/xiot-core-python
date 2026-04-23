@@ -42,7 +42,6 @@ class Shadow:
     @piid.setter
     def piid(self, piid: int):
         self._piid = piid
-        return self
 
     @property
     def value(self) -> object:

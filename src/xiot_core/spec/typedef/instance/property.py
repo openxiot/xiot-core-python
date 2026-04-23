@@ -177,7 +177,7 @@ class Property(Generic[T]):
     def set_value_for_operation(self, operation: PropertyOperation) -> None:
         """为操作设置值"""
         try:
-            data_value = self._format.create_value(operation.value())
+            data_value = self._format.create_value(operation.value)
             self.set_data_value_with_exception(data_value, write=True)
             operation.status = Status.COMPLETED
         except IotError as e:

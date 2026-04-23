@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-from typing import Dict, Optional, Any
+from typing import Dict, Optional
 
 
 class CombinationValueCodec:
     """组合值编解码器（对应Java CombinationValueCodec）"""
 
     @staticmethod
-    def decode_array(array: Optional[list]) -> Optional[Dict[int, Any]]:
+    def decode_array(array: Optional[list]) -> Optional[Dict[int, object]]:
         """解码列表为组合值字典"""
-        members: Dict[int, Any] = {}
+        members: Dict[int, object] = {}
         if array is None:
             return members
 
@@ -34,9 +34,9 @@ class CombinationValueCodec:
         return members
 
     @staticmethod
-    def decode_dict(obj: Dict[str, Any]) -> Dict[int, Any]:
+    def decode_dict(obj: Dict[str, object]) -> Dict[int, object]:
         """解码字典为组合值字典"""
-        members: Dict[int, Any] = {}
+        members: Dict[int, object] = {}
         for k, v in obj.items():
             if k.startswith("#"):
                 piid_str = k[1:]
@@ -52,15 +52,15 @@ class CombinationValueCodec:
         return members
 
     @staticmethod
-    def encode(members: Dict[int, Any]) -> list | dict:
+    def encode(members: Dict[int, object]) -> list | dict:
         """编码组合值（默认非紧凑模式）"""
         return CombinationValueCodec.encode_compact(False, members)
 
     @staticmethod
-    def encode_compact(compact: bool, members: Dict[Any, Any]) -> list | dict:
+    def encode_compact(compact: bool, members: dict[object, object]) -> list | dict:
         """编码组合值（支持紧凑/非紧凑模式）"""
         if compact:
-            o: Dict[str, Any] = {}
+            o: Dict[str, object] = {}
             for k, v in members.items():
                 # 嵌套编码
                 if isinstance(v, dict):

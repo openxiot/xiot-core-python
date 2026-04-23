@@ -4,15 +4,13 @@ from typing import Dict
 class UrnNamespace:
     """URN 命名空间单例类"""
     _instance = None
-    _class_lock = "UrnNamespace"
     _namespaces: Dict[str, str]
 
     def __new__(cls):
         if cls._instance is None:
-            with cls._class_lock:  # 简化线程锁（Python中可使用threading.Lock，此处保持原逻辑）
-                if cls._instance is None:
-                    cls._instance = super().__new__(cls)
-                    cls._instance._init_namespaces()
+            if cls._instance is None:
+                cls._instance = super().__new__(cls)
+                cls._instance._init_namespaces()
         return cls._instance
 
     def _init_namespaces(self) -> None:

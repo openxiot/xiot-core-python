@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Optional, Dict, Collection
+from typing import Optional, Collection
 from .abstract_operation import AbstractOperation
 from .argument_operation import ArgumentOperation
 from ..status.status import Status
@@ -16,7 +16,7 @@ class EventOperation(AbstractOperation):
         super().__init__()
         self._eid: EventID
         self._oid: Optional[str] = None
-        self._arguments: Dict[int, ArgumentOperation] = {}
+        self._arguments: dict[int, ArgumentOperation] = {}
         self._arguments_compact: bool = False
 
         # 处理不同构造参数组合
@@ -50,7 +50,7 @@ class EventOperation(AbstractOperation):
         self._oid = oid
 
     @property
-    def arguments(self) -> Dict[int, ArgumentOperation]:
+    def arguments(self) -> dict[int, ArgumentOperation]:
         return self._arguments
 
     @arguments.setter

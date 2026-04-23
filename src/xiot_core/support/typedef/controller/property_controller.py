@@ -1,5 +1,4 @@
 from typing import Dict, Generic, TypeVar, Optional, Callable
-import asyncio
 
 from xiot_core.spec.typedef.definition.property.access import Access
 from xiot_core.spec.typedef.definition.property.data.data_format import DataFormat
@@ -65,25 +64,20 @@ class PropertyController(Generic[T], Property[T]):
     def setter(self, setter: PropertySetterWrapper) -> None:
         self._setter = setter
 
-    async def set(self, value: T) -> asyncio.Future[T]:
-        future = asyncio.Future()
+    async def set(self, value: T):
         if not self.writable():
-            future.set_exception(Exception("property cannot write"))
-            return future
+            raise Exception("property cannot write")
 
         if self._setter is None:
-            future.set_exception(Exception("property set: cannot implemented"))
-            return future
+            raise Exception("property set: cannot implemented")
 
         try:
             if self.format == DataFormat.COMBINATION:
                 await self._setter.call(self.iid, self.to_map(value))
             else:
                 await self._setter.call(self.iid, value)
-            future.set_result(value)
         except Exception as e:
-            future.set_exception(e)
-        return future
+            raise e
 
     def set_with_callback(self, value: T, success: Callable[[T], None], error: Callable[[Exception], None]) -> None:
         async def _set():
@@ -92,8 +86,6 @@ class PropertyController(Generic[T], Property[T]):
                 success(result)
             except Exception as e:
                 error(e)
-
-        asyncio.create_task(_set())
 
     # 以下为原注释掉的方法，保留结构
     # def get(self) -> T:
