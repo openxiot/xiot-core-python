@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Optional
 
 from xiot_core.spec.typedef.definition.urn.action_type import ActionType
 from xiot_core.spec.typedef.instance.action import Action
@@ -10,7 +10,7 @@ class ActionController(Action):
     def __init__(self,
                  iid: int,
                  type_: ActionType,
-                 description: Dict[str, str] = None,
+                 description: dict[str, str] = None,
                  in_: list[Argument] = None,
                  out: list[Argument] = None):
         super().__init__(iid, type_)

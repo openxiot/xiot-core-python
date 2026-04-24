@@ -11,6 +11,8 @@ from xiot_core.spec.typedef.summary.summary import Summary
 from xiot_core.support.typedef.controller.operator.action_invoker_wrapper import ActionInvokerWrapper
 from xiot_core.support.typedef.controller.operator.property_setter_wrapper import PropertySetterWrapper
 from xiot_core.support.typedef.controller.service_controller import ServiceController
+from xiot_core.support.typedef.controller.property_controller import PropertyController
+from xiot_core.support.typedef.controller.action_controller import ActionController
 
 T = TypeVar('T')
 
@@ -71,10 +73,16 @@ class DeviceController(Generic[T], DeviceInstance):
 
             if isinstance(service, ServiceController):
                 for piid, property_ in service.properties.items():
-                    property_.setter = setter_wrapper
+                    if isinstance(property_, PropertyController):
+                        property_.setter = setter_wrapper
+                    else:
+                        raise ValueError(f"property not PropertyController: {piid}")
 
                 for aiid, action in service.actions.items():
-                    action.invoker = invoker_wrapper
+                    if isinstance(action, ActionController):
+                        action.invoker = invoker_wrapper
+                    else:
+                        raise ValueError(f"action not ActionController: {aiid}")
 
     def __eq__(self, other: object) -> bool:
         if self is other:

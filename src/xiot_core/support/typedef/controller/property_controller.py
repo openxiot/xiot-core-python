@@ -61,6 +61,11 @@ class PropertyController(Generic[T], Property[T]):
             for observer in self._observers.values():
                 observer(self.get_value())
 
+    @property
+    def setter(self) -> Optional[PropertySetterWrapper]:
+        return self._setter
+
+    @setter.setter
     def setter(self, setter: PropertySetterWrapper) -> None:
         self._setter = setter
 
