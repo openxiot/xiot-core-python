@@ -8,17 +8,17 @@ class PropertySetterWrapper:
             self,
             did: str,
             siid: int,
-            operator: Callable[[PropertyOperation], Awaitable[PropertyOperation]]
+            operator: Callable[[PropertyOperation], Awaitable[PropertyOperation]],
+            context: object
     ):
         self._did = did
         self._siid = siid
         self._operator = operator
+        self._context = context
 
     async def call(self, iid: int, value: object) -> None:
         operation = PropertyOperation(did=self._did, siid=self._siid, piid=iid, value=value)
+        operation.context = self._context
         result: PropertyOperation = await self._operator(operation)
-        try:
-            if result.is_error:
-                raise Exception(f"Property set failed: {result.status}, {result.description}")
-        except Exception as e:
-            raise Exception(f"Property set error: {e}")
+        if result.is_error:
+            raise ValueError(f"Property set failed: {result.status}, {result.description}")

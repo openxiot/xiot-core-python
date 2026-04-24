@@ -9,15 +9,18 @@ class ActionInvokerWrapper:
             self,
             did: str,
             siid: int,
-            operator: Callable[[ActionOperation], Awaitable[ActionOperation]]
+            operator: Callable[[ActionOperation], Awaitable[ActionOperation]],
+            context: object
     ):
         self._did = did
         self._siid = siid
         self._operator = operator
+        self._context = context
 
     async def call(self, iid: int, arguments: Dict[int, ArgumentOperation]) -> Dict[int, ArgumentOperation]:
         operation = ActionOperation(did = self._did, siid = self._siid, aiid = iid)
         operation.arguments_in = list(arguments.values())
+        operation.context = self._context
 
         try:
             result = await self._operator(operation)

@@ -65,11 +65,12 @@ class DeviceController(Generic[T], DeviceInstance):
     def set_operator(
             self,
             setter: Callable[[PropertyOperation], Awaitable[PropertyOperation]],
-            invoker: Callable[[ActionOperation], Awaitable[ActionOperation]]
+            invoker: Callable[[ActionOperation], Awaitable[ActionOperation]],
+            context: object
     ) -> None:
         for siid, service in self._services.items():
-            setter_wrapper = PropertySetterWrapper(did = self._did, siid = siid, operator=setter)
-            invoker_wrapper = ActionInvokerWrapper(did = self._did, siid = siid, operator=invoker)
+            setter_wrapper = PropertySetterWrapper(did = self._did, siid = siid, operator=setter, context = context)
+            invoker_wrapper = ActionInvokerWrapper(did = self._did, siid = siid, operator=invoker, context = context)
 
             if isinstance(service, ServiceController):
                 for piid, property_ in service.properties.items():

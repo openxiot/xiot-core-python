@@ -71,26 +71,20 @@ class PropertyController(Generic[T], Property[T]):
 
     async def set(self, value: T):
         if not self.writable():
-            raise Exception("property cannot write")
+            raise IOError("property cannot write")
 
         if self._setter is None:
-            raise Exception("property set: cannot implemented")
+            raise NotImplementedError("property set: cannot implemented")
 
-        try:
-            if self.format == DataFormat.COMBINATION:
-                await self._setter.call(self.iid, self.to_map(value))
-            else:
-                await self._setter.call(self.iid, value)
-        except Exception as e:
-            raise e
+        if self.format == DataFormat.COMBINATION:
+            await self._setter.call(self.iid, self.to_map(value))
+        else:
+            await self._setter.call(self.iid, value)
 
     def set_with_callback(self, value: T, success: Callable[[T], None], error: Callable[[Exception], None]) -> None:
         async def _set():
-            try:
-                result = await self.set(value)
-                success(result)
-            except Exception as e:
-                error(e)
+            result = await self.set(value)
+            success(result)
 
     # 以下为原注释掉的方法，保留结构
     # def get(self) -> T:
