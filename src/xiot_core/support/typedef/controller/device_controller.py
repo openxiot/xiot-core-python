@@ -81,13 +81,13 @@ class DeviceController(Generic[T], DeviceInstance):
                     if isinstance(property_, PropertyController):
                         property_.setter = setter_wrapper
                     else:
-                        raise ValueError(f"property not PropertyController: {piid}")
+                        raise ValueError(f"property not PropertyController: {piid} => {type(property_).__name__}")
 
-                for aiid, action in service.actions.items():
-                    if isinstance(action, ActionController):
-                        action.invoker = invoker_wrapper
+                for aiid, action_ in service.actions.items():
+                    if isinstance(action_, ActionController):
+                        action_.invoker = invoker_wrapper
                     else:
-                        raise ValueError(f"action not ActionController: {aiid}")
+                        raise ValueError(f"action not ActionController: {aiid} => {type(action_).__name__}")
 
     def __eq__(self, other: object) -> bool:
         if self is other:
