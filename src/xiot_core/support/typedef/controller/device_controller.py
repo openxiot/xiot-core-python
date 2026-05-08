@@ -75,7 +75,7 @@ class DeviceController(Generic[T], DeviceInstance):
             context: object
     ) -> None:
         for siid, service in self._services.items():
-            getter_wrapper = PropertyGetterWrapper(did = self._did, siid = siid, operator=setter, context = context)
+            getter_wrapper = PropertyGetterWrapper(did = self._did, siid = siid, operator=getter, context = context)
             setter_wrapper = PropertySetterWrapper(did = self._did, siid = siid, operator=setter, context = context)
             invoker_wrapper = ActionInvokerWrapper(did = self._did, siid = siid, operator=invoker, context = context)
 
