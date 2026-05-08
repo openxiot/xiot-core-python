@@ -10,6 +10,7 @@ from xiot_core.spec.typedef.status.status import Status
 from xiot_core.spec.typedef.summary.summary import Summary
 from xiot_core.support.typedef.controller.operator.action_invoker_wrapper import ActionInvokerWrapper
 from xiot_core.support.typedef.controller.operator.property_setter_wrapper import PropertySetterWrapper
+from xiot_core.support.typedef.controller.operator.property_getter_wrapper import PropertyGetterWrapper
 from xiot_core.support.typedef.controller.service_controller import ServiceController
 from xiot_core.support.typedef.controller.property_controller import PropertyController
 from xiot_core.support.typedef.controller.action_controller import ActionController
@@ -68,17 +69,20 @@ class DeviceController(Generic[T], DeviceInstance):
 
     def set_operator(
             self,
+            getter: Callable[[PropertyOperation], Awaitable[PropertyOperation]],
             setter: Callable[[PropertyOperation], Awaitable[PropertyOperation]],
             invoker: Callable[[ActionOperation], Awaitable[ActionOperation]],
             context: object
     ) -> None:
         for siid, service in self._services.items():
+            getter_wrapper = PropertyGetterWrapper(did = self._did, siid = siid, operator=setter, context = context)
             setter_wrapper = PropertySetterWrapper(did = self._did, siid = siid, operator=setter, context = context)
             invoker_wrapper = ActionInvokerWrapper(did = self._did, siid = siid, operator=invoker, context = context)
 
             if isinstance(service, ServiceController):
                 for piid, property_ in service.properties.items():
                     if isinstance(property_, PropertyController):
+                        property_.getter = getter_wrapper
                         property_.setter = setter_wrapper
                     else:
                         raise ValueError(f"property not PropertyController: {piid} => {type(property_).__name__}")

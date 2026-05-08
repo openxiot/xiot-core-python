@@ -5,6 +5,7 @@ from xiot_core.spec.typedef.definition.property.data.data_format import DataForm
 from xiot_core.spec.typedef.definition.urn.property_type import PropertyType
 from xiot_core.spec.typedef.instance.property import Property
 from xiot_core.spec.typedef.operation.property_operation import PropertyOperation
+from xiot_core.support.typedef.controller.operator.property_getter_wrapper import PropertyGetterWrapper
 from xiot_core.support.typedef.controller.operator.property_setter_wrapper import PropertySetterWrapper
 
 T = TypeVar('T')
@@ -18,6 +19,7 @@ class PropertyController(Generic[T], Property[T]):
                  fmt: DataFormat = DataFormat.INT8,
                  ):
         super().__init__(other = other, iid = iid, type_ = type_, access = access, fmt = fmt)
+        self._getter: Optional[PropertyGetterWrapper] = None
         self._setter: Optional[PropertySetterWrapper] = None
         self._observers: Dict[str, Callable[[T], None]] = {}
 
@@ -69,6 +71,14 @@ class PropertyController(Generic[T], Property[T]):
     def setter(self, setter: PropertySetterWrapper) -> None:
         self._setter = setter
 
+    @property
+    def getter(self) -> Optional[PropertyGetterWrapper]:
+        return self._getter
+
+    @getter.setter
+    def getter(self, getter: PropertyGetterWrapper) -> None:
+        self._getter = getter
+
     async def set(self, value: T):
         if not self.writable():
             raise IOError("property cannot write")
@@ -85,6 +95,20 @@ class PropertyController(Generic[T], Property[T]):
         async def _set():
             result = await self.set(value)
             success(result)
+
+    async def get(self) -> T:
+        if not self.readable():
+            raise IOError("property cannot read")
+
+        if self._getter is None:
+            raise NotImplementedError("property get: cannot implemented")
+
+        value: object = await self._getter.call(self.iid)
+
+        if self.format == DataFormat.COMBINATION:
+            return self.value_of(value)
+        else:
+            return value
 
     # 以下为原注释掉的方法，保留结构
     # def get(self) -> T:
