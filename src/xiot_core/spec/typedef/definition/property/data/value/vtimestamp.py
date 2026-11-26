@@ -1,0 +1,66 @@
+from typing import Optional
+
+from xiot_core.spec.typedef.definition.property.data.data_value import DataValue
+
+
+class Vtimestamp(DataValue[int]):
+    """时间戳值：64 位毫秒数（epoch millis）。"""
+
+    def __init__(self, value: int = 0):
+        if isinstance(value, int):
+            self._value = int(value)
+        else:
+            self._value = 0
+
+    def less_equals(self, max_value: DataValue) -> bool:
+        if not isinstance(max_value, Vtimestamp):
+            return False
+        return self._value <= max_value._value
+
+    def validate(self, min_value: DataValue, max_value: DataValue) -> bool:
+        if not (isinstance(min_value, Vtimestamp) and isinstance(max_value, Vtimestamp)):
+            return False
+        min_v = min_value._value
+        max_v = max_value._value
+        if self._value < min_v or self._value > max_v:
+            print(f"Vtimestamp.validate failed: {self._value} min: {min_value} max: {max_value}")
+            return False
+        return True
+
+    def validate_with_step(self, min_value: DataValue, max_value: DataValue, step: DataValue) -> bool:
+        if not (isinstance(min_value, Vtimestamp) and isinstance(max_value, Vtimestamp) and isinstance(step, Vtimestamp)):
+            return False
+        min_v = min_value._value
+        max_v = max_value._value
+        step_v = step._value
+
+        v = min_v
+        while v <= max_v:
+            if v == self._value:
+                return True
+            v += step_v
+
+        print(f"Vtimestamp.validate failed: {self._value} min: {min_v} max: {max_v} step: {step}")
+        return False
+
+    def raw_value(self) -> int:
+        return self._value
+
+    @staticmethod
+    def value_of(obj: object) -> Optional['Vtimestamp']:
+        if isinstance(obj, int) and not isinstance(obj, bool):
+            return Vtimestamp(int(obj))
+        return None
+
+    def __str__(self) -> str:
+        return str(self._value)
+
+    def __eq__(self, other: object) -> bool:
+        if self is other:
+            return True
+        if not isinstance(other, Vtimestamp):
+            return False
+        return self._value == other._value
+
+    def __hash__(self) -> int:
+        return hash(self._value)

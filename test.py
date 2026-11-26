@@ -23,7 +23,8 @@ def run_all_tests() -> None:
         "tests.xiot_core.spec.codec.operation.test_property_operation_codec",
         "tests.xiot_core.spec.codec.shadow.test_shadow_codec",
         "tests.xiot_core.spec.codec.summary.test_summary_codec",
-        "tests.xiot_core.spec.typedef.definition.type.test_action_type"
+        "tests.xiot_core.spec.typedef.definition.type.test_action_type",
+        "tests.xiot_core.spec.typedef.definition.property.data.test_data_format_timestamp"
     ]
 
     # 加载所有测试

@@ -13,6 +13,7 @@ from xiot_core.spec.typedef.definition.property.data.value.vint32 import Vint32
 from xiot_core.spec.typedef.definition.property.data.value.vint64 import Vint64
 from xiot_core.spec.typedef.definition.property.data.value.vint8 import Vint8
 from xiot_core.spec.typedef.definition.property.data.value.vstring import Vstring
+from xiot_core.spec.typedef.definition.property.data.value.vtimestamp import Vtimestamp
 from xiot_core.spec.typedef.definition.property.data.value.vuint16 import Vuint16
 from xiot_core.spec.typedef.definition.property.data.value.vuint32 import Vuint32
 from xiot_core.spec.typedef.definition.property.data.value.vuint8 import Vuint8
@@ -33,6 +34,7 @@ class DataFormat(Enum):
     STRING = "string"
     HEX = "hex"
     COMBINATION = "combination"
+    TIMESTAMP = "timestamp"
 
     def __str__(self) -> str:
         """重写 toString 方法"""
@@ -74,10 +76,12 @@ class DataFormat(Enum):
             DataFormat.INT16: "int",
             DataFormat.INT32: "int",
             DataFormat.INT64: "long",
+            DataFormat.TIMESTAMP: "long",
             DataFormat.FLOAT: "float",
             DataFormat.STRING: "string",
             DataFormat.HEX: "string",
             DataFormat.COMBINATION: "object",
+            DataFormat.TIMESTAMP: "long",
         }
         return mapping.get(self, "unknown")
 
@@ -92,6 +96,7 @@ class DataFormat(Enum):
             DataFormat.INT32: "Integer",
             DataFormat.UINT32: "Long",
             DataFormat.INT64: "Long",
+            DataFormat.TIMESTAMP: "Long",
             DataFormat.FLOAT: "Double",
             DataFormat.STRING: "String",
             DataFormat.HEX: "String",
@@ -112,7 +117,8 @@ class DataFormat(Enum):
             if self == DataFormat.BOOL:
                 return self._boolean_value_of(string)
             elif self in (DataFormat.UINT8, DataFormat.UINT16, DataFormat.UINT32,
-                          DataFormat.INT8, DataFormat.INT16, DataFormat.INT32, DataFormat.INT64):
+                          DataFormat.INT8, DataFormat.INT16, DataFormat.INT32, DataFormat.INT64,
+                          DataFormat.TIMESTAMP):
                 return int(string)
             elif self == DataFormat.FLOAT:
                 if string == "0":
@@ -142,7 +148,7 @@ class DataFormat(Enum):
         return cls.value_of(value)
 
     def get_class(self) -> type[Vbool] | type[Vuint8] | type[Vuint16] | type[Vuint32] | type[Vint8] | type[Vint16] | \
-                           type[Vint32] | type[Vint64] | type[Vfloat] | type[Vstring] | None:
+                           type[Vint32] | type[Vint64] | type[Vtimestamp] | type[Vfloat] | type[Vstring] | None:
         type_mapping = {
             DataFormat.BOOL: Vbool,
             DataFormat.UINT8: Vuint8,
@@ -152,6 +158,7 @@ class DataFormat(Enum):
             DataFormat.INT16: Vint16,
             DataFormat.INT32: Vint32,
             DataFormat.INT64: Vint64,
+            DataFormat.TIMESTAMP: Vtimestamp,
             DataFormat.FLOAT: Vfloat,
             DataFormat.STRING: Vstring,
             DataFormat.HEX: Vhex,
